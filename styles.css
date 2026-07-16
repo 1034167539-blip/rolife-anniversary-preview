@@ -1596,8 +1596,8 @@ button {
 }
 
 .preview-calendar-submit {
-  top: 500px;
-  z-index: 1;
+  top: 468px;
+  z-index: 3;
   background: #474747;
   cursor: default;
 }
