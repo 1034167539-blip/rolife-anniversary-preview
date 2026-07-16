@@ -1356,6 +1356,8 @@ button {
 }
 
 .preview-calendar-card {
+  position: relative;
+  isolation: isolate;
   overflow: hidden;
   padding: 0;
   background: #111;
@@ -1512,7 +1514,7 @@ button {
 .preview-calendar-response {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 20;
   opacity: 0;
   pointer-events: none;
   transition: opacity 280ms ease;
@@ -1521,6 +1523,7 @@ button {
 .preview-calendar-response::before {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: rgba(0, 0, 0, 0.72);
   content: "";
 }
@@ -1529,7 +1532,7 @@ button {
   position: absolute;
   top: 54px;
   left: 29px;
-  z-index: 1;
+  z-index: 2;
   display: block;
   width: 302px;
   height: 383px;
@@ -1577,7 +1580,7 @@ button {
 .preview-calendar-dot {
   position: absolute;
   left: 34px;
-  z-index: 1;
+  z-index: 3;
   display: block;
   border-radius: 999px;
   background: #ff873b;
@@ -1597,8 +1600,8 @@ button {
 
 .preview-calendar-submit {
   top: 468px;
-  z-index: 3;
-  background: #474747;
+  z-index: 10;
+  background: #000;
   cursor: default;
 }
 
