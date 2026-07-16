@@ -71,6 +71,13 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: "Anniversary Schoolbell";
+  src: url("assets/fonts/Schoolbell-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1346,6 +1353,289 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.preview-calendar-card {
+  overflow: hidden;
+  padding: 0;
+  background: #111;
+  color: #111;
+}
+
+.preview-calendar-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-calendar-card .preview-calendar-title {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  z-index: 2;
+  width: 282px;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+.preview-calendar-title-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.preview-calendar-cities {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.preview-calendar-city {
+  position: absolute;
+  display: block;
+  width: max-content;
+  max-width: 170px;
+  overflow: hidden;
+  color: #9d6074;
+  font-family: "Anniversary Schoolbell", "Bradley Hand", "Marker Felt", "Comic Sans MS", cursive;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.011em;
+  white-space: nowrap;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  animation: calendar-city-write 820ms steps(18, end) forwards;
+  animation-delay: var(--city-delay, 0ms);
+  transform: rotate(var(--city-rotate, 0deg));
+  will-change: clip-path, opacity;
+}
+
+.city-indiana {
+  top: 222px;
+  left: 102px;
+  --city-delay: 240ms;
+  --city-rotate: -4deg;
+}
+
+.city-barcelona {
+  top: 248px;
+  left: 164px;
+  --city-delay: 620ms;
+  --city-rotate: -2deg;
+}
+
+.city-montreal {
+  top: 274px;
+  left: 57px;
+  --city-delay: 1020ms;
+  --city-rotate: -1deg;
+}
+
+.city-singapore {
+  top: 300px;
+  left: 238px;
+  --city-delay: 1440ms;
+  --city-rotate: 2deg;
+}
+
+.city-pennsylvania {
+  top: 329px;
+  left: 111px;
+  --city-delay: 1880ms;
+  --city-rotate: 1deg;
+}
+
+.city-new-york {
+  top: 376px;
+  left: 68px;
+  --city-delay: 2320ms;
+  --city-rotate: -2deg;
+}
+
+.city-melbourne {
+  top: 360px;
+  left: 202px;
+  --city-delay: 2760ms;
+  --city-rotate: -1deg;
+}
+
+.city-madrid {
+  top: 420px;
+  left: 161px;
+  --city-delay: 3180ms;
+  --city-rotate: -2deg;
+}
+
+.preview-calendar-button,
+.preview-calendar-submit {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 205px;
+  height: 54px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: #171717;
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    background 220ms ease;
+}
+
+.preview-calendar-button-image {
+  display: block;
+  width: 151px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.preview-calendar-button {
+  top: 468px;
+}
+
+.preview-calendar-button:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.preview-calendar-response {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+.preview-calendar-response::before {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  content: "";
+}
+
+.preview-calendar-input-wrap {
+  position: absolute;
+  top: 54px;
+  left: 29px;
+  z-index: 1;
+  display: block;
+  width: 302px;
+  height: 383px;
+  border-radius: 21px;
+  background: #ff873b;
+  transform: translateY(18px) scale(0.96);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.preview-calendar-quote {
+  position: absolute;
+  top: 21.5px;
+  left: 23px;
+  color: #050505;
+  font-family: "Anniversary Bebas", Impact, sans-serif;
+  font-size: 62px;
+  line-height: 0.8;
+}
+
+.preview-calendar-input {
+  position: absolute;
+  inset: 72px 20px 22px;
+  width: calc(100% - 40px);
+  height: calc(100% - 94px);
+  padding: 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  color: #000;
+  background: transparent;
+  font-family: "Anniversary Poppins", Poppins, Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+
+.preview-calendar-input::placeholder {
+  color: #e27830;
+  opacity: 1;
+}
+
+.preview-calendar-dot {
+  position: absolute;
+  left: 34px;
+  z-index: 1;
+  display: block;
+  border-radius: 999px;
+  background: #ff873b;
+}
+
+.preview-calendar-dot-large {
+  top: 449px;
+  width: 21px;
+  height: 21px;
+}
+
+.preview-calendar-dot-small {
+  top: 476px;
+  width: 13px;
+  height: 13px;
+}
+
+.preview-calendar-submit {
+  top: 500px;
+  z-index: 1;
+  background: #474747;
+  cursor: default;
+}
+
+.preview-calendar-submit .preview-calendar-button-image {
+  opacity: 0.12;
+}
+
+.preview-calendar-card.is-response-open .preview-calendar-cities,
+.preview-calendar-card.is-response-open .preview-calendar-title {
+  opacity: 0.18;
+}
+
+.preview-calendar-card.is-response-open .preview-calendar-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preview-calendar-card.is-response-open .preview-calendar-response {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.preview-calendar-card.is-response-open .preview-calendar-input-wrap {
+  transform: translateY(0) scale(1);
+}
+
+@keyframes calendar-city-write {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .online-series-card {

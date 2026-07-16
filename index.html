@@ -13,7 +13,7 @@
       }
       document.documentElement.classList.add("is-deck-preloading");
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260716seriesicons" />
+    <link rel="stylesheet" href="styles.css?v=20260716calendar3" />
   </head>
   <body>
     <header class="site-header" aria-label="页面导航">
@@ -234,8 +234,35 @@
             <img src="assets/preview/cards/preview-card1.png" alt="Preview Content Card 1" />
           </article>
 
-          <article class="deck-card feature-card image-card preview-image-card" data-section="audience-wants-calendar" data-nav-section="audience-wants" data-theme="preview" data-ui="dark" aria-label="Preview Content Card 2">
-            <img src="assets/preview/cards/preview-card2.png" alt="Preview Content Card 2" />
+          <article class="deck-card feature-card preview-calendar-card" data-section="audience-wants-calendar" data-nav-section="audience-wants" data-theme="preview" data-ui="dark" aria-label="Preview Content Card 2">
+            <img class="preview-calendar-bg" src="assets/preview/calendar/calendar-base.png" alt="" aria-hidden="true" />
+            <h2 class="preview-calendar-title">
+              <img class="preview-calendar-title-image" src="assets/preview/calendar/calendar-title.png" alt="Where should the Rolife Builders Festival head next?" />
+            </h2>
+            <div class="preview-calendar-cities" aria-label="Suggested cities">
+              <span class="preview-calendar-city city-indiana">Indiana</span>
+              <span class="preview-calendar-city city-barcelona">Barcelona</span>
+              <span class="preview-calendar-city city-montreal">Montreal</span>
+              <span class="preview-calendar-city city-singapore">Singapore</span>
+              <span class="preview-calendar-city city-pennsylvania">Pennsylvania</span>
+              <span class="preview-calendar-city city-new-york">New York</span>
+              <span class="preview-calendar-city city-melbourne">Melbourne</span>
+              <span class="preview-calendar-city city-madrid">Madrid</span>
+            </div>
+            <button class="preview-calendar-button" type="button" aria-label="Tell Us Your City">
+              <img class="preview-calendar-button-image" src="assets/preview/calendar/calendar-button-text.png" alt="" aria-hidden="true" />
+            </button>
+            <div class="preview-calendar-response" aria-hidden="true">
+              <label class="preview-calendar-input-wrap">
+                <span class="preview-calendar-quote">“</span>
+                <textarea class="preview-calendar-input" aria-label="Tell us your city" placeholder="Tell Us Your City"></textarea>
+              </label>
+              <span class="preview-calendar-dot preview-calendar-dot-large"></span>
+              <span class="preview-calendar-dot preview-calendar-dot-small"></span>
+              <button class="preview-calendar-submit" type="button" disabled aria-label="Tell Us Your City">
+                <img class="preview-calendar-button-image" src="assets/preview/calendar/calendar-button-text.png" alt="" aria-hidden="true" />
+              </button>
+            </div>
           </article>
 
           <article class="deck-card feature-card image-card other-image-card action-card" data-section="your-turn" data-theme="black" data-ui="dark" aria-label="Other Content Card 1">
@@ -256,6 +283,6 @@
 
     <button class="share-image" type="button">START SCROLLING</button>
 
-    <script src="script.js?v=20260716seriesicons"></script>
+    <script src="script.js?v=20260716calendar3"></script>
   </body>
 </html>

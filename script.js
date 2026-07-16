@@ -227,6 +227,24 @@ function setupHoverImageRevealCards() {
   });
 }
 
+function openPreviewCalendarResponse(button) {
+  const card = button.closest(".preview-calendar-card");
+  if (!card) return;
+
+  card.classList.add("is-response-open");
+  card.querySelector(".preview-calendar-response")?.setAttribute("aria-hidden", "false");
+  window.setTimeout(() => {
+    card.querySelector(".preview-calendar-input")?.focus({ preventScroll: true });
+  }, 280);
+}
+
+function closePreviewCalendarResponse(card) {
+  if (!card) return;
+
+  card.classList.remove("is-response-open");
+  card.querySelector(".preview-calendar-response")?.setAttribute("aria-hidden", "true");
+}
+
 function syncDeckHeight() {
   if (!deck) return;
   deck.style.height = `${Math.max(deckCards.length, 1) * 100}svh`;
@@ -624,6 +642,24 @@ function scrollToSection(sectionId, behavior = "smooth") {
 }
 
 function handleHashLink(event) {
+  const openCalendar = event.target.closest(".preview-calendar-card.is-response-open");
+  if (
+    openCalendar &&
+    event.target.closest(".preview-calendar-response") &&
+    !event.target.closest(".preview-calendar-input-wrap, .preview-calendar-submit")
+  ) {
+    event.preventDefault();
+    closePreviewCalendarResponse(openCalendar);
+    return;
+  }
+
+  const calendarButton = event.target.closest(".preview-calendar-button");
+  if (calendarButton) {
+    event.preventDefault();
+    openPreviewCalendarResponse(calendarButton);
+    return;
+  }
+
   const link = event.target.closest('a[href^="#"]');
   if (!link) return;
 
