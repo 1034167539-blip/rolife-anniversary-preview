@@ -8,6 +8,7 @@ const introMouseFollowLayer = document.querySelector(".intro-mouse-follow-layer"
 const socialOrbitRingFrame = document.querySelector(".social-orbit-ring-frame");
 const socialOrbitRing = document.querySelector(".social-orbit-ring");
 const deckCards = [...document.querySelectorAll(".deck-card")];
+const hoverImageRevealCards = [...document.querySelectorAll(".hover-image-reveal-card")];
 const navSections = navItems.map((item) => item.dataset.section).filter(Boolean);
 const navMagnetConfig = {
   radius: 240,
@@ -176,6 +177,54 @@ function spawnClickEffect(event) {
   }
 
   trimClickEffectParticles(layer);
+}
+
+function setHoverRevealIndex(card, activeIndex) {
+  const items = [...card.querySelectorAll(".online-series-item")];
+  const panels = [...card.querySelectorAll(".hover-reveal-panel")];
+
+  card.classList.add("is-hovering");
+  card.dataset.hoverIndex = `${activeIndex}`;
+
+  items.forEach((item, index) => {
+    item.classList.toggle("is-active", index === activeIndex);
+  });
+
+  panels.forEach((panel, index) => {
+    panel.classList.toggle("is-active", index === activeIndex);
+    panel.classList.toggle("is-before", index < activeIndex);
+    panel.classList.toggle("is-after", index > activeIndex);
+  });
+}
+
+function clearHoverReveal(card) {
+  card.classList.remove("is-hovering");
+  delete card.dataset.hoverIndex;
+
+  card.querySelectorAll(".online-series-item, .hover-reveal-panel").forEach((element) => {
+    element.classList.remove("is-active", "is-before", "is-after");
+  });
+}
+
+function moveHoverReveal(event) {
+  const card = event.currentTarget;
+  const rect = card.getBoundingClientRect();
+
+  card.style.setProperty("--hover-x", `${event.clientX - rect.left}px`);
+  card.style.setProperty("--hover-y", `${event.clientY - rect.top}px`);
+}
+
+function setupHoverImageRevealCards() {
+  hoverImageRevealCards.forEach((card) => {
+    card.addEventListener("pointermove", moveHoverReveal);
+    card.addEventListener("pointerleave", () => clearHoverReveal(card));
+
+    card.querySelectorAll(".online-series-item").forEach((item) => {
+      item.addEventListener("pointerenter", () => {
+        setHoverRevealIndex(card, Number(item.dataset.hoverIndex || 0));
+      });
+    });
+  });
 }
 
 function syncDeckHeight() {
@@ -618,6 +667,7 @@ function handleDeckWheel(event) {
 
 document.addEventListener("click", handleHashLink);
 document.addEventListener("mousedown", spawnClickEffect);
+setupHoverImageRevealCards();
 chapterNav?.addEventListener("pointermove", handleNavPointerMove);
 chapterNav?.addEventListener("pointerleave", resetNavMagnet);
 deckStage?.addEventListener("pointermove", handleIntroGlowPointerMove);

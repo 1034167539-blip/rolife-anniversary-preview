@@ -1348,6 +1348,121 @@ button {
   object-fit: cover;
 }
 
+.online-series-card {
+  --hover-x: 50%;
+  --hover-y: 50%;
+  --hover-offset-x: 118px;
+  --hover-offset-y: 0px;
+
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 24px;
+  background: #000;
+  color: #fff;
+}
+
+.online-series-list {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.online-series-item {
+  display: block;
+  color: #51565a;
+  font-family: "Anniversary Bebas", var(--display-font);
+  font-size: 87px;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.041em;
+  text-align: center;
+  white-space: nowrap;
+  cursor: default;
+  transition: color 240ms ease;
+}
+
+.online-series-card:not(.is-hovering) .online-series-item {
+  color: #fff;
+}
+
+.online-series-card.is-hovering .online-series-item.is-active {
+  color: #fff;
+}
+
+.online-series-card.is-hovering .online-series-item:not(.is-active) {
+  color: #51565a;
+}
+
+.hover-reveal-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 160px;
+  height: 214px;
+  overflow: hidden;
+  border-radius: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transform:
+    translate3d(
+      calc(var(--hover-x) + var(--hover-offset-x)),
+      calc(var(--hover-y) + var(--hover-offset-y)),
+      0
+    )
+    translate(-50%, -50%);
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.online-series-card.is-hovering .hover-reveal-preview {
+  opacity: 1;
+}
+
+.hover-reveal-panel {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: translateY(100%);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.hover-reveal-panel.is-active {
+  transform: translateY(0);
+}
+
+.hover-reveal-panel.is-before {
+  transform: translateY(-100%);
+}
+
+.hover-reveal-panel.is-after {
+  transform: translateY(100%);
+}
+
+.hover-reveal-panel-ds {
+  background: linear-gradient(135deg, #f46300, #ffb45d);
+}
+
+.hover-reveal-panel-dp {
+  background: linear-gradient(135deg, #73a7e5, #c9ddf3);
+}
+
+.hover-reveal-panel-tgs {
+  background: linear-gradient(135deg, #f8cb5e, #fff2a3);
+}
+
+.hover-reveal-panel-tw {
+  background: linear-gradient(135deg, #f799bd, #ffd2e5);
+}
+
 .social-orbit-card {
   background: #000;
 }
