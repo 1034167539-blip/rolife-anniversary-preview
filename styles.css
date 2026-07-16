@@ -1351,7 +1351,7 @@ button {
 .online-series-card {
   --hover-x: 50%;
   --hover-y: 50%;
-  --hover-offset-x: 118px;
+  --hover-offset-x: 200px;
   --hover-offset-y: 0px;
 
   justify-content: center;
@@ -1368,43 +1368,67 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 30px;
   width: 100%;
 }
 
 .online-series-item {
+  position: relative;
   display: block;
-  color: #51565a;
+  overflow: hidden;
+  height: 0.9em;
+  color: #fff;
   font-family: "Anniversary Bebas", var(--display-font);
   font-size: 87px;
   font-weight: 400;
   line-height: 0.9;
-  letter-spacing: -0.041em;
+  letter-spacing: -0.05em;
   text-align: center;
   white-space: nowrap;
   cursor: default;
-  transition: color 240ms ease;
 }
 
-.online-series-card:not(.is-hovering) .online-series-item {
+.online-series-text {
+  display: block;
+  transition:
+    color 260ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.online-series-text-dim {
   color: #fff;
+  transform: translateY(0);
 }
 
-.online-series-card.is-hovering .online-series-item.is-active {
+.online-series-text-active {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
   color: #fff;
+  transform: translateY(100%);
 }
 
-.online-series-card.is-hovering .online-series-item:not(.is-active) {
+.online-series-card.is-hovering .online-series-text-dim {
   color: #51565a;
+}
+
+.online-series-card.is-hovering .online-series-item.is-active .online-series-text-dim {
+  color: #51565a;
+  transform: translateY(-100%);
+}
+
+.online-series-card.is-hovering .online-series-item.is-active .online-series-text-active {
+  transform: translateY(0);
 }
 
 .hover-reveal-preview {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
-  width: 160px;
-  height: 214px;
+  z-index: 5;
+  width: 300px;
+  height: 400px;
   overflow: hidden;
   border-radius: 16px;
   opacity: 0;
@@ -1418,7 +1442,7 @@ button {
     translate(-50%, -50%);
   transition:
     opacity 180ms ease,
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
 }
 
