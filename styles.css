@@ -1541,19 +1541,22 @@ button {
 
 .preview-calendar-quote {
   position: absolute;
-  top: 21.5px;
-  left: 23px;
-  color: #050505;
-  font-family: "Anniversary Bebas", Impact, sans-serif;
-  font-size: 62px;
-  line-height: 0.8;
+  top: 22.69px;
+  left: 22.69px;
+  display: block;
+  width: 27px;
+  height: 22px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
 }
 
 .preview-calendar-input {
   position: absolute;
-  inset: 72px 20px 22px;
-  width: calc(100% - 40px);
-  height: calc(100% - 94px);
+  top: 54px;
+  left: 22.69px;
+  width: calc(100% - 45.38px);
+  height: calc(100% - 76px);
   padding: 0;
   border: 0;
   outline: 0;
@@ -1561,7 +1564,7 @@ button {
   color: #000;
   background: transparent;
   font-family: "Anniversary Poppins", Poppins, Arial, sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.25;
   letter-spacing: -0.04em;
 }
