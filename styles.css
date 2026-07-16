@@ -1061,7 +1061,7 @@ button {
 }
 
 .intro-quiz-card {
-  background: #efe9d9 url("assets/intro/card1/intro-card1-cutout.png") center center / cover no-repeat;
+  background: #efe9d9;
   color: #111;
 }
 
