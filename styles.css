@@ -1603,10 +1603,12 @@ button {
   z-index: 10;
   background: #000;
   cursor: default;
+  opacity: 1;
+  appearance: none;
 }
 
 .preview-calendar-submit .preview-calendar-button-image {
-  opacity: 0.12;
+  opacity: 1;
 }
 
 .preview-calendar-card.is-response-open .preview-calendar-cities,
