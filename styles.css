@@ -1505,19 +1505,35 @@ button {
 }
 
 .hover-reveal-panel-ds {
-  background: linear-gradient(135deg, #f46300, #ffb45d);
+  background-image:
+    url("assets/online/series-icons/ds.png"),
+    linear-gradient(135deg, #f46300, #ffb45d);
+  background-position: center;
+  background-size: cover;
 }
 
 .hover-reveal-panel-dp {
-  background: linear-gradient(135deg, #73a7e5, #c9ddf3);
+  background-image:
+    url("assets/online/series-icons/dp.png"),
+    linear-gradient(135deg, #73a7e5, #c9ddf3);
+  background-position: center;
+  background-size: cover;
 }
 
 .hover-reveal-panel-tgs {
-  background: linear-gradient(135deg, #f8cb5e, #fff2a3);
+  background-image:
+    url("assets/online/series-icons/tgs.png"),
+    linear-gradient(135deg, #f8cb5e, #fff2a3);
+  background-position: center;
+  background-size: cover;
 }
 
 .hover-reveal-panel-tw {
-  background: linear-gradient(135deg, #f799bd, #ffd2e5);
+  background-image:
+    url("assets/online/series-icons/tw.png"),
+    linear-gradient(135deg, #f799bd, #ffd2e5);
+  background-position: center;
+  background-size: cover;
 }
 
 .social-orbit-card {
