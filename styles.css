@@ -1356,7 +1356,7 @@ button {
 
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 24px;
   background: #000;
   color: #fff;
@@ -1377,6 +1377,7 @@ button {
   display: block;
   overflow: hidden;
   height: 0.9em;
+  padding: 0 16px;
   color: #fff;
   font-family: "Anniversary Bebas", var(--display-font);
   font-size: 87px;
@@ -1403,8 +1404,8 @@ button {
 
 .online-series-text-active {
   position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
+  inset: 0 auto auto 16px;
+  width: calc(100% - 32px);
   color: #fff;
   transform: translateY(100%);
 }
