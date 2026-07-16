@@ -37,6 +37,14 @@ const introMouseFollowConfig = {
   driftMax: 54,
   poolSize: 5,
 };
+const clickEffectConfig = {
+  color: "#ffffff",
+  particleCount: 8,
+  duration: 300,
+  particleSize: 2,
+  effectSize: 90,
+  maxActiveParticles: 96,
+};
 const themeConfig = {
   gold: {
     bg: "#f799bd",
@@ -110,9 +118,64 @@ const socialOrbitMotion = {
   rate: socialOrbitConfig.normalRate,
   targetRate: socialOrbitConfig.normalRate,
 };
+let clickEffectsLayer = null;
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
+}
+
+function getClickEffectsLayer() {
+  if (clickEffectsLayer) return clickEffectsLayer;
+
+  clickEffectsLayer = document.createElement("div");
+  clickEffectsLayer.className = "click-effects-layer";
+  clickEffectsLayer.setAttribute("aria-hidden", "true");
+  document.body.appendChild(clickEffectsLayer);
+
+  return clickEffectsLayer;
+}
+
+function trimClickEffectParticles(layer) {
+  const overflow = layer.children.length - clickEffectConfig.maxActiveParticles;
+
+  if (overflow <= 0) return;
+
+  [...layer.children].slice(0, overflow).forEach((particle) => {
+    particle.remove();
+  });
+}
+
+function spawnClickEffect(event) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  if (!event.clientX && !event.clientY) {
+    return;
+  }
+
+  const layer = getClickEffectsLayer();
+  const baseDistance = clickEffectConfig.effectSize * 0.2;
+  const randomDistance = clickEffectConfig.effectSize * 0.3;
+
+  for (let index = 0; index < clickEffectConfig.particleCount; index += 1) {
+    const angle = (index * 360) / clickEffectConfig.particleCount * (Math.PI / 180);
+    const distance = baseDistance + Math.random() * randomDistance;
+    const particle = document.createElement("span");
+
+    particle.className = "click-effect-particle";
+    particle.style.setProperty("--click-x", `${event.clientX}px`);
+    particle.style.setProperty("--click-y", `${event.clientY}px`);
+    particle.style.setProperty("--click-dx", `${Math.cos(angle) * distance}px`);
+    particle.style.setProperty("--click-dy", `${Math.sin(angle) * distance}px`);
+    particle.style.setProperty("--click-duration", `${clickEffectConfig.duration}ms`);
+    particle.style.setProperty("--click-particle-size", `${clickEffectConfig.particleSize}px`);
+    particle.style.setProperty("--click-particle-color", clickEffectConfig.color);
+    particle.addEventListener("animationend", () => particle.remove(), { once: true });
+    layer.appendChild(particle);
+  }
+
+  trimClickEffectParticles(layer);
 }
 
 function syncDeckHeight() {
@@ -554,6 +617,7 @@ function handleDeckWheel(event) {
 }
 
 document.addEventListener("click", handleHashLink);
+document.addEventListener("mousedown", spawnClickEffect);
 chapterNav?.addEventListener("pointermove", handleNavPointerMove);
 chapterNav?.addEventListener("pointerleave", resetNavMagnet);
 deckStage?.addEventListener("pointermove", handleIntroGlowPointerMove);

@@ -426,6 +426,81 @@ button {
   pointer-events: none;
 }
 
+.click-effects-layer {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint style;
+}
+
+.click-effect-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--click-particle-size, 2px);
+  height: var(--click-particle-size, 2px);
+  border-radius: 50%;
+  background: var(--click-particle-color, #fff);
+  opacity: 0;
+  transform:
+    translate3d(
+      calc(var(--click-x, 0px) - var(--click-particle-size, 2px) / 2),
+      calc(var(--click-y, 0px) - var(--click-particle-size, 2px) / 2),
+      0
+    )
+    scale(0);
+  will-change: transform, opacity;
+  animation: click-particle-burst var(--click-duration, 300ms) linear forwards;
+}
+
+@keyframes click-particle-burst {
+  0% {
+    opacity: 0;
+    transform:
+      translate3d(
+        calc(var(--click-x, 0px) - var(--click-particle-size, 2px) / 2),
+        calc(var(--click-y, 0px) - var(--click-particle-size, 2px) / 2),
+        0
+      )
+      scale(0);
+  }
+
+  20% {
+    opacity: 1;
+    transform:
+      translate3d(
+        calc(var(--click-x, 0px) - var(--click-particle-size, 2px) / 2),
+        calc(var(--click-y, 0px) - var(--click-particle-size, 2px) / 2),
+        0
+      )
+      scale(1);
+  }
+
+  60% {
+    opacity: 1;
+    transform:
+      translate3d(
+        calc(var(--click-x, 0px) + var(--click-dx, 0px) - var(--click-particle-size, 2px) / 2),
+        calc(var(--click-y, 0px) + var(--click-dy, 0px) - var(--click-particle-size, 2px) / 2),
+        0
+      )
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate3d(
+        calc(var(--click-x, 0px) + var(--click-dx, 0px) - var(--click-particle-size, 2px) / 2),
+        calc(var(--click-y, 0px) + var(--click-dy, 0px) - var(--click-particle-size, 2px) / 2),
+        0
+      )
+      scale(0);
+  }
+}
+
 .intro-follow-image {
   position: absolute;
   top: 0;
